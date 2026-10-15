@@ -15,27 +15,31 @@ const SignUpPage = () => {
       data[key] = value.toString();
     });
 
-    const { data: signUpData, error } = await signUp.email({
+    const { error } = await signUp.email({
       name: data.name,
       email: data.email,
       password: data.password,
-      callbackURL: "/"
+      callbackURL: "/",
+    });
 
-    })
+    if (error) {
+      console.error("Sign up failed:", error);
+      return;
+    }
 
   };
 
-  const handleGoogleSignIn = async() =>{
-      const googleSignInData = await signIn.social({
-        provider:'google'
-      })
-  }
+  const handleGoogleSignIn = async () => {
+    await signIn.social({
+      provider: "google",
+    });
+  };
 
-  const handleGithubSignIn = async()=>{
-    const githubSingInData = await signIn.social({
-      provider:'github'
-    })
-  }
+  const handleGithubSignIn = async () => {
+    await signIn.social({
+      provider: "github",
+    });
+  };
 
   return (
     <div className=" w-full max-w-7xl gap-4 flex flex-col items-center justify-center  m-auto py-4">
