@@ -27,7 +27,7 @@ All user-facing copy is **Bengali**; numbers are formatted with `Intl.NumberForm
 
 - There is **no test suite, no CI workflow, no Prettier, no husky**. Don't invent commands for them.
 - `npm run lint` currently exits 0 with 6 pre-existing `no-unused-vars` warnings (`category/[slug]/page.tsx`, `sign-in/page.tsx`). Don't treat those as regressions; new errors do matter.
-- On this Windows box PowerShell's execution policy blocks `npm.ps1`/`npx.ps1` — invoke `npm.cmd` / `npx.cmd`.
+- On this Windows box PowerShell's execution policy was blocking `npm.ps1`; it is now set to `RemoteSigned` (`CurrentUser` scope). If `npm` ever fails with "running scripts is disabled on this system" again, either re-run `Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned -Force` or use `npm.cmd` / `npx.cmd`.
 
 ## Where things live
 
